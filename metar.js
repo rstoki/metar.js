@@ -23,7 +23,7 @@
             this.result = {
                 runway: matches[1],
                 direction: matches[2],
-                seperator: matches[3],
+                separator: matches[3],
                 minIndicator: matches[4],
                 minValue: matches[5],
                 variableIndicator: matches[6],
@@ -322,8 +322,14 @@
         if (this.result.cavok) return;
         if (this.peek().match(/^R[0-9]+/)) {
             this.next();
-            this.result.rvr = parseRVR(this.current);
-            // TODO: peek is more than one RVR in METAR and parse
+            if (!this.result.rvr) {
+                this.result.rvr = [];
+            }
+            rvrObj = parseRVR(this.current);
+            this.result.rvr.push(rvrObj);
+            this.parseRunwayVisibility();
+        } else {
+            return;
         }
     };
 
