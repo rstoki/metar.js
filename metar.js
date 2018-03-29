@@ -191,6 +191,8 @@
         d.setUTCDate(asInt(this.current.slice(0, 2)));
         d.setUTCHours(asInt(this.current.slice(2, 4)));
         d.setUTCMinutes(asInt(this.current.slice(4, 6)));
+        d.setUTCSeconds(0);
+        d.setUTCMilliseconds(0);
         this.result.time = d;
     };
 
@@ -234,9 +236,9 @@
 
         var direction = this.current.slice(0, 3);
         if (direction === "VRB") {
-            this.result.wind.direction = "VRB";
-            this.result.wind.variation = true;
+            this.result.wind.vrb = true;
         } else {
+            this.result.wind.vrb = false;
             this.result.wind.direction = asInt(direction);
         }
 
@@ -368,6 +370,7 @@
         cloud.altitude = asInt(this.current.slice(cloud.abbreviation.length)) *
             100 || null;
         cloud.cumulonimbus = /CB$/.test(this.current);
+        cloud.toweringCumulus = /TCU$/.test(this.current);
 
         this.result.clouds = this.result.clouds || [];
         this.result.clouds.push(cloud);
