@@ -253,7 +253,8 @@
         if ((unitMatch = this.current.match(/KT|MPS|KPH|SM$/))) {
             this.result.wind.unit = unitMatch[0];
         } else {
-            throw new Error("Bad wind unit: " + this.current);
+            // Default to KT if no match
+            this.result.wind.unit = 'KT';
         }
 
         var varMatch;
