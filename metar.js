@@ -380,6 +380,7 @@
 
     METAR.prototype.parseTempDewpoint = function() {
         this.next();
+        if (this.current === undefined || this.current === null) return;
         var replaced = this.current.replace(/M/g, "-");
         var a = replaced.split("/");
         if (2 !== a.length) return; // expecting XX/XX
