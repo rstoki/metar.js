@@ -4,7 +4,9 @@
 
 [METAR](http://en.wikipedia.org/wiki/METAR) (Meteorological Aviation Report) parser for Javascript
 
-Demo: <http://skydivejkl.github.io/metar.js/>
+**This fork compiled various functional enhancements from other forks (identified up to 12/2024) into a single repository.** 
+
+Demo (of original version from 05/2018): <http://skydivejkl.github.io/metar.js/>
 
 ## Install
 
@@ -72,7 +74,27 @@ console.log(parseMETAR("EFJY 171950Z AUTO 27006KT 220V310 9999 FEW012 SCT015 BKN
 
 # Changelog
 
-### 1.0.0
+## 1.1.3 
+
+- Added support for visibility with a fraction (eg. 2 1/2SM) (by Pierre Cauchois)
+- Added `toweringCumulus` boolean flag in parseClouds [by theciezac]
+- Improved handling of variable wind	[by theciezac]
+- Fixed date precision (seconds and milliseconds set to 0) [by theciezac]
+
+
+## 1.1.2
+
+- Made dew point null aware
+
+## 1.1.1
+
+- Added default wind unit to KT (METAR case: ENMH 030250Z VRB03 CAVOK 07/04 Q1017)
+
+## 1.1.0
+
+- Runways are now all parsed (.rvr)
+
+## 1.0.0
 
 - Renamed `altimeter_in_hg` to `altimeterInHg` and `altimeter_hpa` to `altimeterInHpa` for consistency
 - Works in browsers without precompiling
